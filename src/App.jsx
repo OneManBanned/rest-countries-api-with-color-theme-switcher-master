@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react"
+import '../dist/css/index.css'
 
 function App() {
-  const [countryData, setCountryData] = useState(null)
+  const [countryData, setCountryData] = useState([])
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
@@ -15,20 +16,37 @@ function App() {
     setIsLoading(false)
   }
 
-  console.log(typeof countryData)
+  console.log(countryData)
 
   return (
     <>
       <h1>Hello World</h1>
-      <ul>
-        {/* {!isLoading ?
+      <main>
+        {isLoading
+          ? <div>Loading...</div>
+          : countryData.map((country, index) => {
+            return <div className="countryContainer" key={index}>
 
-          countryData.map((country, index) => {
-            return <li key={index}>{country[index]}</li>
+              <img className="countryContainer-flag" src={country.flags.png} alt={country.flags.alt} />
+
+              <div>
+                <h2 className="countryContainer-heading">{country.name.common}</h2>
+                <dl className="countryContainer-stats">
+                  <div>
+                    <dd>Population:</dd><dt>{country.population}</dt>
+                  </div>
+                  <div>
+                    <dd>Region:</dd><dt>{country.region}</dt>
+                  </div>
+                  <div>
+                    <dd>Capital:</dd><dt>{country.capital}</dt>
+                  </div>
+                </dl>
+              </div>
+            </div>
           })
-          : <li>loading...</li>
-        } */}
-      </ul>
+        }
+      </main>
     </>
   )
 }

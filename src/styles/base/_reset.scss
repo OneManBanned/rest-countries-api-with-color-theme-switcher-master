@@ -1,0 +1,37 @@
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    background-color: red;
+}
+
+.countryContainer {
+    background-color: blue;
+    margin-bottom: 1rem;
+    width: 16.5rem;
+    display: flex;
+    flex-direction: column;
+    border-radius: .5rem;
+
+
+    &-flag {
+        height: 10rem;
+
+    }
+
+    &-heading {
+        color: red;
+    }
+}
