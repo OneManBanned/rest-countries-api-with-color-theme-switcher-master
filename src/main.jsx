@@ -15,7 +15,8 @@ const router = createBrowserRouter([
   },
   {
     path: 'detailView',
-    element: <DetailView />
+    element: <DetailView />,
+    errorElement: <Error />,
   }
 
 ])
