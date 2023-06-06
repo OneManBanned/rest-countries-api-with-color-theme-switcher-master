@@ -81,9 +81,7 @@ export default function Root() {
                             to={`/${country.cca3}/${country.borders}`}
                         >
                             <div
-                                onClick={(e) => detailView(e)}
                                 className="countryContainer" >
-
                                 <img className="countryContainer-flag" src={country.flags.png} alt={country.flags.alt} />
                                 <div>
                                     <h2 className="countryContainer-heading">{country.name.common}</h2>

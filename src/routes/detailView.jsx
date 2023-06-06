@@ -3,23 +3,22 @@ import { useEffect, useState } from 'react';
 import callAPI from '../js/caller';
 
 export default function DetailView() {
+
     const params = useParams()
-    console.log(params)
 
     const [isLoading, setIsLoading] = useState(true)
     const [countryData, setCountryData] = useState([])
     const [borderCountries, setBorderCountries] = useState([])
 
-
     useEffect(() => {
         callAPI(`https://restcountries.com/v3.1/alpha?codes=${params.country}&fields=name,population,flags,capital,region,subregion,currencies,languages,tld`, setCountryData)
         let borderApiCall = String(params.borders)
-        if (borderApiCall !== '') {
+        if (borderApiCall !== '' && params.borders) {
             callAPI(`https://restcountries.com/v3.1/alpha?codes=${borderApiCall}&fields=name,borders,cca3`, setBorderCountries)
         }
         setIsLoading(false)
     }, [isLoading, params])
-    console.log(countryData, borderCountries, params)
+
     return (
         <main>
             <Link to={'/'}>Back</Link>
@@ -31,7 +30,7 @@ export default function DetailView() {
                         <ol>
                             {
                                 borderCountries.map((country, index) => {
-                                    return <li><Link key={index}
+                                    return <li key={index}><Link
                                         to={`/${country.cca3}/${country.borders}`}
                                     >{country.name.common}</Link></li>
                                 })
