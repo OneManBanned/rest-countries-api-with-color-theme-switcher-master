@@ -12,7 +12,7 @@ export default function Root() {
         : listCountryData
 
     useEffect(() => {
-        callAPI('https://restcountries.com/v3.1/independent?status=true&fields=name,flags,region,capital,borders,population', setListCountryData)
+        callAPI('https://restcountries.com/v3.1/independent?status=true&fields=name,flags,region,capital,borders,population,cca3', setListCountryData)
         setIsLoading(false)
     }, [isLoading])
 
@@ -30,8 +30,10 @@ export default function Root() {
     function countrySearch(e) {
         const filteredList = listCountryData.filter(country => {
             let name = country.name.common
+            name = name.toLowerCase()
             let target = e.target.value
-            return name.toLowerCase() === target.toLowerCase()
+            let regex = new RegExp(`^${target.toLowerCase()}`)
+            return regex.test(name)
         })
         setFilterCountryList(filteredList)
     }
@@ -76,11 +78,8 @@ export default function Root() {
                     : countryView.map((country, index) => {
                         return <Link
                             key={index}
-                            to={'../detailView/'}
-                            state={{
-                                country: country.name.common,
-                                borders: [country.borders]
-                            }}>
+                            to={`/${country.cca3}/${country.borders}`}
+                        >
                             <div
                                 onClick={(e) => detailView(e)}
                                 className="countryContainer" >

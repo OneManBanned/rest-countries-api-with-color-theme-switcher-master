@@ -14,7 +14,7 @@ const router = createBrowserRouter([
     errorElement: <Error />,
   },
   {
-    path: 'detailView',
+    path: '/:country/:borders',
     element: <DetailView />,
     errorElement: <Error />,
   }

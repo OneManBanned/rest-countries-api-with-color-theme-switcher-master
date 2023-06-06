@@ -1,21 +1,25 @@
-import { useLocation, Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react';
 import callAPI from '../js/caller';
 
 export default function DetailView() {
-    let { state } = useLocation()
+    const params = useParams()
+    console.log(params)
 
     const [isLoading, setIsLoading] = useState(true)
     const [countryData, setCountryData] = useState([])
     const [borderCountries, setBorderCountries] = useState([])
 
+
     useEffect(() => {
-        callAPI(`https://restcountries.com/v3.1/name/${state.country.toLowerCase()}?fields=name,population,flags,capital,region,subregion,currencies,languages,tld`, setCountryData)
-        if (String(state.borders) !== '') {
-            callAPI(`https://restcountries.com/v3.1/alpha?codes=${String(state.borders)}&fields=name`, setBorderCountries)
+        callAPI(`https://restcountries.com/v3.1/alpha?codes=${params.country}&fields=name,population,flags,capital,region,subregion,currencies,languages,tld`, setCountryData)
+        let borderApiCall = String(params.borders)
+        if (borderApiCall !== '') {
+            callAPI(`https://restcountries.com/v3.1/alpha?codes=${borderApiCall}&fields=name,borders,cca3`, setBorderCountries)
         }
         setIsLoading(false)
-    }, [isLoading])
+    }, [isLoading, params])
+    console.log(countryData, borderCountries, params)
     return (
         <main>
             <Link to={'/'}>Back</Link>
@@ -27,7 +31,9 @@ export default function DetailView() {
                         <ol>
                             {
                                 borderCountries.map((country, index) => {
-                                    return <li key={index}>{country.name.common}</li>
+                                    return <li><Link key={index}
+                                        to={`/${country.cca3}/${country.borders}`}
+                                    >{country.name.common}</Link></li>
                                 })
                             }
                         </ol>
