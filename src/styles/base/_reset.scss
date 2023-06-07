@@ -10,21 +10,13 @@ body {
     min-height: 100vh;
 }
 
-main {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    background-color: red;
-}
-
 .countryContainer {
-    background-color: blue;
+    background-color: rgb(10, 10, 12);
     margin-bottom: 1rem;
     width: 16.5rem;
     display: flex;
     flex-direction: column;
     border-radius: .5rem;
-
 
     &-flag {
         height: 10rem;

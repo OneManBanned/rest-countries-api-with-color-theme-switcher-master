@@ -1,11 +1,17 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, createContext } from "react"
 import { Link } from "react-router-dom";
 import callAPI from "../js/caller";
+import '@fontsource/roboto/300.css';
+import CssBaseline from '@mui/material/CssBaseline';
+import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
+
+export const ThemeContext = createContext(null);
 
 export default function Root() {
     const [isLoading, setIsLoading] = useState(true)
     const [listCountryData, setListCountryData] = useState([])
     const [filteredCountryList, setFilterCountryList] = useState([])
+    const [theme, setTheme] = useState('light')
 
     let countryView = filteredCountryList.length > 0
         ? filteredCountryList
@@ -42,27 +48,34 @@ export default function Root() {
         e.target.value = ''
     }
 
+    function toggleTheme() {
+        setTheme(curr => curr === 'light' ? 'dark' : 'light')
+    }
+
+    console.log(theme)
+
     return (
         <>
-            <header>
-                <h1>Where in the world?</h1>
-                <fieldset>
-                    <label htmlFor="light"></label>
-                    <input type="radio" name="theme" id="light" defaultChecked />
-                    <label htmlFor="dark"></label>
-                    <input type="radio" name="theme" id="dark" />
-                </fieldset>
-            </header>
-            <main >
-                <div>
+            <CssBaseline />
+            <ThemeContext.Provider value={{ theme, toggleTheme }}>
+
+                <header >
+                    <h1>Where in the world?</h1>
                     <fieldset>
-                        <label htmlFor="search"></label>
-                        <input
-                            onChange={(e) => countrySearch(e)}
-                            onBlur={(e) => emptyValue(e)}
-                            type="text" name="search" id="search" />
+                        <label htmlFor="light"></label>
+                        <input type="checkbox" onClick={toggleTheme} name="theme" />
                     </fieldset>
-                    <fieldset>
+                </header>
+                <main id={theme}>
+                    <div className="search-container">
+                        <fieldset>
+                            <label htmlFor="search"></label>
+                            <input
+                                onChange={(e) => countrySearch(e)}
+                                onBlur={(e) => emptyValue(e)}
+                                type="text" name="search" id="search" />
+                        </fieldset>
+                        {/* <fieldset>
                         <select onChange={(e) => filterByRegion(e)} name="region" id="region-select">
                             <option value="">Filter by Region</option>
                             <option value="Africa">Africa</option>
@@ -71,36 +84,52 @@ export default function Root() {
                             <option value="Europe">Europe</option>
                             <option value="Oceania">Oceania</option>
                         </select>
-                    </fieldset>
-                </div>
-                {isLoading
-                    ? <div>Loading...</div>
-                    : countryView.map((country, index) => {
-                        return <Link
-                            key={index}
-                            to={`/${country.cca3}/${country.borders}`}
-                        >
-                            <div
-                                className="countryContainer" >
-                                <img className="countryContainer-flag" src={country.flags.png} alt={country.flags.alt} />
-                                <div>
-                                    <h2 className="countryContainer-heading">{country.name.common}</h2>
-                                    <dl className="countryContainer-stats">
-                                        <div>
-                                            <dd>Population:</dd><dt>{country.population}</dt>
-                                        </div>
-                                        <div>
-                                            <dd>Region:</dd><dt>{country.region}</dt>
-                                        </div>
-                                        <div>
-                                            <dd>Capital:</dd><dt>{country.capital}</dt>
-                                        </div>
-                                    </dl>
-                                </div>
-                            </div></Link>
-                    })
-                }
-            </main>
+                    </fieldset> */}
+                        <FormControl className="formControl" fullWidth>
+                            <InputLabel id="region filter">Filter by Region</InputLabel>
+                            <Select
+                                labelId="region filter"
+                                id="demo-simple-select"
+                                label="region-select"
+                                onChange={(e) => filterByRegion(e)}
+                            >
+                                <MenuItem value='Africa'>Africa</MenuItem>
+                                <MenuItem value='Americas'>Americas</MenuItem>
+                                <MenuItem value='Asia'>Asia</MenuItem>
+                                <MenuItem value='Europe'>Europe</MenuItem>
+                                <MenuItem value='Oceania'>Oceania</MenuItem>
+                            </Select>
+                        </FormControl>
+                    </div>
+                    {isLoading
+                        ? <div>Loading...</div>
+                        : countryView.map((country, index) => {
+                            return <Link
+                                key={index}
+                                to={`/${country.cca3}/${country.borders}`}
+                            >
+                                <div
+                                    className="countryContainer" >
+                                    <img className="countryContainer-flag" src={country.flags.png} alt={country.flags.alt} />
+                                    <div>
+                                        <h2 className="countryContainer-heading">{country.name.common}</h2>
+                                        <dl className="countryContainer-stats">
+                                            <div>
+                                                <dd>Population:</dd><dt>{country.population}</dt>
+                                            </div>
+                                            <div>
+                                                <dd>Region:</dd><dt>{country.region}</dt>
+                                            </div>
+                                            <div>
+                                                <dd>Capital:</dd><dt>{country.capital}</dt>
+                                            </div>
+                                        </dl>
+                                    </div>
+                                </div></Link>
+                        })
+                    }
+                </main>
+            </ThemeContext.Provider>
         </>
     );
 }
