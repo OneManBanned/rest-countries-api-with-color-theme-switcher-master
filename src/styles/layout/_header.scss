@@ -1,0 +1,30 @@
+header {
+    width: 100%;
+
+
+    nav {
+        display: flex;
+        justify-content: space-between;
+
+        fieldset {
+            display: grid;
+            place-content: center;
+            border: none;
+
+            label {
+
+                display: inline-block;
+
+                span {
+                    padding-left: 1.5rem;
+                }
+            }
+
+            input {
+                appearance: none;
+            }
+
+
+        }
+    }
+}

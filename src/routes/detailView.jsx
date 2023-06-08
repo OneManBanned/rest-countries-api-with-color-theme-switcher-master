@@ -2,6 +2,7 @@ import { Link, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react';
 import callAPI from '../js/caller';
 
+
 export default function DetailView() {
 
     const params = useParams()
@@ -20,7 +21,7 @@ export default function DetailView() {
     }, [isLoading, params])
 
     return (
-        <main>
+        <>
             <Link to={'/'}>Back</Link>
             {isLoading
                 ? <div>loading...</div>
@@ -31,7 +32,7 @@ export default function DetailView() {
                             {
                                 borderCountries.map((country, index) => {
                                     return <li key={index}><Link
-                                        to={`/${country.cca3}/${country.borders}`}
+                                        to={`/detailView/${country.cca3}/${country.borders}`}
                                     >{country.name.common}</Link></li>
                                 })
                             }
@@ -39,6 +40,6 @@ export default function DetailView() {
                     </div>
                 })
             }
-        </main>
+        </>
     );
 }

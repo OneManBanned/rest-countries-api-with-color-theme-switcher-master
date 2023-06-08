@@ -1,3 +1,7 @@
+@use "../abstracts/typography" as *;
+@use "../abstracts/theme" as *;
+
+
 *,
 *::after,
 *::before {
@@ -7,23 +11,14 @@
 }
 
 body {
+    font-family: 'Nunito Sans', sans-serif;
     min-height: 100vh;
 }
 
-.countryContainer {
-    background-color: rgb(10, 10, 12);
-    margin-bottom: 1rem;
-    width: 16.5rem;
-    display: flex;
-    flex-direction: column;
-    border-radius: .5rem;
+#light {
+    @include light-mode;
+}
 
-    &-flag {
-        height: 10rem;
-
-    }
-
-    &-heading {
-        color: red;
-    }
+#dark {
+    @include dark-mode;
 }
