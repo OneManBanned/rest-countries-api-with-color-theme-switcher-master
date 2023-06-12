@@ -18,17 +18,23 @@
 
 @mixin light-mode {
 
-    header {
-        background: $light-bg;
+    header,
+    .countryContainer {
+        background: $white;
         color: $dark-text;
+        box-shadow: 9px 10px 31px -12px rgba(0, 0, 0, 0.83);
 
-        label {
-            background: url('/moon-dark.svg') no-repeat;
+        nav {
+            background: $white;
+            color: $dark-text;
+
+            label {
+                background: url('/moon-dark.svg') no-repeat;
+            }
         }
     }
 
-
-    main {
+    .mainContainer {
         background: $light-bg;
     }
 

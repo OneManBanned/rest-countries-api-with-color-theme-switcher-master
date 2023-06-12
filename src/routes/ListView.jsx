@@ -41,35 +41,35 @@ export default function ListView() {
 
     return (
         <>
-            <div className="search-container">
-                <fieldset>
-                    <label htmlFor="search"></label>
-                    <input
-                        onChange={(e) => countrySearch(e)}
-                        onBlur={(e) => emptyValue(e)}
-                        type="text" name="search" id="search" />
-                </fieldset>
-                <fieldset>
-                    <select onChange={(e) => filterByRegion(e)} name="region" id="region-select">
-                        <option value="">Filter by Region</option>
-                        <option value="Africa">Africa</option>
-                        <option value="Americas">America</option>
-                        <option value="Asia">Asia</option>
-                        <option value="Europe">Europe</option>
-                        <option value="Oceania">Oceania</option>
-                    </select>
-                </fieldset>
-            </div>
-            {isLoading
-                ? <div>Loading...</div>
-                : countryView.map((country, index) => {
-                    return <Link
-                        key={index}
-                        to={`detailView/${country.cca3}/${country.borders}`}
-                    >
-                        <div
-                            className="countryContainer" >
-                            <img className="countryContainer-flag" src={country.flags.png} alt={country.flags.alt} loading="lazy" />
+            <div className="mainContainer">
+                <div className="searchContainer">
+                    <fieldset className="searchContainer_country">
+                        <label htmlFor="search"></label>
+                        <input
+                            onChange={(e) => countrySearch(e)}
+                            onBlur={(e) => emptyValue(e)}
+                            type="text" name="search" id="search" />
+                    </fieldset>
+                    <fieldset className="searchContainer_region">
+                        <select onChange={(e) => filterByRegion(e)} name="region" id="region-select">
+                            <option value="">Filter by Region</option>
+                            <option value="Africa">Africa</option>
+                            <option value="Americas">America</option>
+                            <option value="Asia">Asia</option>
+                            <option value="Europe">Europe</option>
+                            <option value="Oceania">Oceania</option>
+                        </select>
+                    </fieldset>
+                </div>
+                {isLoading
+                    ? <div className="loading">Loading...</div>
+                    : countryView.map((country, index) => {
+                        return <Link
+                            key={index}
+                            to={`detailView/${country.cca3}/${country.borders}`}
+                            className="countryContainer"
+                        >
+                            <img src={country.flags.png} alt={country.flags.alt} loading="lazy" />
                             <div>
                                 <h2 className="countryContainer-heading">{country.name.common}</h2>
                                 <dl className="countryContainer-stats">
@@ -84,9 +84,10 @@ export default function ListView() {
                                     </div>
                                 </dl>
                             </div>
-                        </div></Link>
-                })
-            }
+                        </Link>
+                    })
+                }
+            </div>
         </>
     );
 }
