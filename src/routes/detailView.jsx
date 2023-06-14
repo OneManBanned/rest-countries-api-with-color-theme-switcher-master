@@ -1,6 +1,6 @@
 import { Link, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react';
-import callAPI from '../js/caller';
+import { callAPI } from '../js/caller';
 
 
 export default function DetailView() {

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom";
-import callAPI from "../js/caller";
+import { callAPI, popFormat } from "../js/caller";
 
 
 export default function ListView() {
@@ -74,13 +74,13 @@ export default function ListView() {
                                 <h2 className="countryContainer-heading">{country.name.common}</h2>
                                 <dl className="countryContainer-stats">
                                     <div>
-                                        <dd>Population:</dd><dt>{country.population}</dt>
+                                        <dd>Population:</dd><dt>{popFormat(country.population)}</dt>
                                     </div>
                                     <div>
                                         <dd>Region:</dd><dt>{country.region}</dt>
                                     </div>
                                     <div>
-                                        <dd>Capital:</dd><dt>{country.capital}</dt>
+                                        <dd>Capital:</dd><dt>{country.capital[0]}</dt>
                                     </div>
                                 </dl>
                             </div>
