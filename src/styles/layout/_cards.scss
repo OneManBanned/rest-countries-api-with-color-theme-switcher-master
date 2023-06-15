@@ -1,6 +1,6 @@
 .countryContainer {
     border-radius: .4rem;
-    width: 280px;
+    width: 17.5rem;
     text-decoration: none;
     margin-inline: 1rem;
 
@@ -31,7 +31,7 @@
                 display: flex;
                 padding: 0;
                 font-size: .95rem;
-                flex-basis: wrap;
+                flex-wrap: wrap;
 
                 dd {
                     font-weight: 800;

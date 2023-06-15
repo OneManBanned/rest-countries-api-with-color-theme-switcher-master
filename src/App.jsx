@@ -18,7 +18,7 @@ function App() {
             setTheme={setTheme}
             theme={theme}
           />
-          <main className="container">
+          <main>
             <Routes>
               <Route path='/' element={<ListView />} />
               <Route path='/detailView/:country/:borders?' element={<DetailView />} />

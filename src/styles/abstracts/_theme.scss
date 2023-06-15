@@ -2,17 +2,33 @@
 
 @mixin dark-mode {
 
-    header {
-        background: $dark-bg;
+    header,
+    .countryContainer {
+        background: $dark-elements;
         color: $white;
 
-        label {
-            background: url('/moon-light.svg') no-repeat;
-        }
+        // label {
+        //     background: url('/moon-dark.svg') no-repeat;
+        // }
     }
 
-    main {
+
+    .mainContainer {
         background: $dark-bg;
+    }
+
+    .searchContainer {
+
+        input,
+        select {
+            background-color: $dark-elements;
+            color: $white;
+            box-shadow: none;
+
+            &::placeholder {
+                color: $white;
+            }
+        }
     }
 }
 
@@ -22,20 +38,30 @@
     .countryContainer {
         background: $white;
         color: $dark-text;
-        box-shadow: 9px 10px 31px -12px rgba(0, 0, 0, 0.83);
+        box-shadow: 5px 5px 10px -8px hsl(0, 0%, 52%);
 
         nav {
             background: $white;
             color: $dark-text;
 
-            label {
-                background: url('/moon-dark.svg') no-repeat;
-            }
+            // label {
+            //     background: url('/moon-light.svg') no-repeat;
+            // }
         }
     }
 
     .mainContainer {
         background: $light-bg;
+    }
+
+    .searchContainer {
+        input {
+            background-color: $white;
+
+            &::placeholder {
+                color: $light-input;
+            }
+        }
     }
 
 }

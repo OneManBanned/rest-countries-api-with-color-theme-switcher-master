@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom";
-import { callAPI, popFormat } from "../js/caller";
-
+import { callAPI } from "../js/caller";
 
 export default function ListView() {
     const [isLoading, setIsLoading] = useState(true)
@@ -48,6 +47,7 @@ export default function ListView() {
                         <input
                             onChange={(e) => countrySearch(e)}
                             onBlur={(e) => emptyValue(e)}
+                            placeholder="Search for a country..."
                             type="text" name="search" id="search" />
                     </fieldset>
                     <fieldset className="searchContainer_region">
@@ -74,7 +74,7 @@ export default function ListView() {
                                 <h2 className="countryContainer-heading">{country.name.common}</h2>
                                 <dl className="countryContainer-stats">
                                     <div>
-                                        <dd>Population:</dd><dt>{popFormat(country.population)}</dt>
+                                        <dd>Population:</dd><dt>{Number(country.population).toLocaleString()}</dt>
                                     </div>
                                     <div>
                                         <dd>Region:</dd><dt>{country.region}</dt>
