@@ -10,6 +10,7 @@ export default function DetailView() {
     const [isLoading, setIsLoading] = useState(true)
     const [countryData, setCountryData] = useState([])
     const [borderCountries, setBorderCountries] = useState([])
+    let nativeName = ''
 
     useEffect(() => {
         callAPI(`https://restcountries.com/v3.1/alpha?codes=${params.country}&fields=name,population,flags,capital,region,subregion,currencies,languages,tld`, setCountryData)
@@ -17,16 +18,19 @@ export default function DetailView() {
         if (borderApiCall !== '' && params.borders) {
             callAPI(`https://restcountries.com/v3.1/alpha?codes=${borderApiCall}&fields=name,borders,cca3`, setBorderCountries)
         }
+        nativeName = countryData[0].name.nativeName
         setIsLoading(false)
     }, [isLoading, params])
     console.log(countryData)
+
     return (
         <>
             <Link to={'/'}>Back</Link>
             {isLoading
                 ? <div>loading...</div>
                 : countryData.map((country, index) => {
-                    return <div key={index}>
+                    return <div key={index}
+                        className='detailView'>
                         <div>
                             <img src={country.flags.png} alt={country.flags.alt} />
                         </div>
@@ -36,7 +40,7 @@ export default function DetailView() {
                                 <dl>
                                     <div>
                                         <dd>Native Name:</dd>
-                                        <dt>{country.name.native}</dt>
+                                        <dt>{country.name.nativeName.common}</dt>
                                     </div>
                                     <div>
                                         <dd>Population:</dd>
@@ -58,10 +62,14 @@ export default function DetailView() {
                                         <dd>Top Level Domain:</dd>
                                         <dt>{country.tld}</dt>
                                     </div>
-                                    {/* <div>
+                                    <div>
                                         <dd>Currencies:</dd>
-                                        <dt>{Object(country.currencies).keys()}</dt>
-                                    </div> */}
+                                        {/* <dt>{
+
+                                            Object.keys(country.currencies).forEach(val => {
+                                                return <span>{obj[val].name}</span>
+                                            })}</dt> */}
+                                    </div>
                                     {/* <div>
                                         <dd>Languages:</dd>
                                         <dt>{country.languages}</dt>
