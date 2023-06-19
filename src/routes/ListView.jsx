@@ -16,6 +16,7 @@ export default function ListView() {
         setIsLoading(false)
     }, [isLoading])
 
+    console.log(listCountryData[0])
     function filterByRegion(e) {
         const filteredList = listCountryData.filter(country => {
             return country.region === e.target.value

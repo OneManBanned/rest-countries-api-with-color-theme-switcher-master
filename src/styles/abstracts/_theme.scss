@@ -50,7 +50,8 @@
         }
     }
 
-    .mainContainer {
+    .mainContainer,
+    main {
         background: $light-bg;
     }
 
@@ -60,6 +61,20 @@
 
             &::placeholder {
                 color: $light-input;
+            }
+        }
+    }
+
+    .backBtn {
+        background-color: $white;
+        box-shadow: 0px 0px 6px -1px hsl(0, 0%, 52%);
+    }
+
+    .bordering {
+        dt {
+            span {
+                background-color: $white;
+                box-shadow: 0px 0px 6px -1px hsl(0, 0%, 52%);
             }
         }
     }

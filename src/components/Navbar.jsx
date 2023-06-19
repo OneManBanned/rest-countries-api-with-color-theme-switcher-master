@@ -2,7 +2,7 @@ import React from "react"
 
 
 function Navbar(props) {
-    console.log(props.theme)
+
     function toggleTheme() {
         props.setTheme(prev => prev === 'light' ? 'dark' : 'light')
     }
