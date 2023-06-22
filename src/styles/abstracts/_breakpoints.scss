@@ -1,5 +1,5 @@
 @mixin dt {
-    @media (min-width: 25rem) {
+    @media (min-width: 40rem) {
         @content
     }
 }

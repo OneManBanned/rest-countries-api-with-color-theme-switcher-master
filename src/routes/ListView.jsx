@@ -64,6 +64,7 @@ export default function ListView() {
                 </div>
                 {isLoading
                     ? <div className="loading">Loading...</div>
+
                     : countryView.map((country, index) => {
                         return <Link
                             key={index}

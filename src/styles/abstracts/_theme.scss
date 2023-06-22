@@ -6,15 +6,13 @@
     .countryContainer {
         background: $dark-elements;
         color: $white;
-
-        // label {
-        //     background: url('/moon-dark.svg') no-repeat;
-        // }
     }
 
 
-    .mainContainer {
+    .mainContainer,
+    main {
         background: $dark-bg;
+        color: $white;
     }
 
     .searchContainer {
@@ -27,6 +25,23 @@
 
             &::placeholder {
                 color: $white;
+            }
+        }
+    }
+
+    .spanLink {
+        color: $white;
+    }
+
+    .backBtn {
+        background-color: $dark-elements;
+        color: $white;
+    }
+
+    .bordering {
+        dt {
+            span {
+                background-color: $dark-elements;
             }
         }
     }
@@ -43,10 +58,6 @@
         nav {
             background: $white;
             color: $dark-text;
-
-            // label {
-            //     background: url('/moon-light.svg') no-repeat;
-            // }
         }
     }
 
@@ -65,8 +76,13 @@
         }
     }
 
+    .spanLink {
+        color: $dark-bg;
+    }
+
     .backBtn {
         background-color: $white;
+        color: $dark-bg;
         box-shadow: 0px 0px 6px -1px hsl(0, 0%, 52%);
     }
 

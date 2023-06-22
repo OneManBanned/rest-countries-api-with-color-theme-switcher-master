@@ -40,64 +40,73 @@ export default function DetailView() {
                             <h1>{country.name.common}</h1>
                             <div>
                                 <dl>
-                                    <div>
-                                        <dd>Native Name:</dd>
-                                        {Object.keys(country.name.nativeName).map((val, index) => {
-                                            if (index === 0) {
-                                                return <dt>{country.name.nativeName[val].common}</dt>
-                                            }
-                                        })}
+                                    <div className='groupOne'>
+                                        <div>
+                                            <dd>Native Name:</dd>
+                                            {Object.keys(country.name.nativeName).map((val, index) => {
+                                                if (index === 0) {
+                                                    return <dt>{country.name.nativeName[val].common}</dt>
+                                                }
+                                            })}
+                                        </div>
+                                        <div>
+                                            <dd>Population:</dd>
+                                            <dt>{Number(country.population).toLocaleString()}</dt>
+                                        </div>
+                                        <div>
+                                            <dd>Region:</dd>
+                                            <dt>{country.region}</dt>
+                                        </div>
+                                        <div>
+                                            <dd>Sub Region:</dd>
+                                            <dt>{country.subregion}</dt>
+                                        </div>
+                                        <div>
+                                            <dd>Capital:</dd>
+                                            <dt>{country.capital[0]}</dt>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <dd>Population:</dd>
-                                        <dt>{Number(country.population).toLocaleString()}</dt>
-                                    </div>
-                                    <div>
-                                        <dd>Region:</dd>
-                                        <dt>{country.region}</dt>
-                                    </div>
-                                    <div>
-                                        <dd>Sub Region:</dd>
-                                        <dt>{country.subregion}</dt>
-                                    </div>
-                                    <div>
-                                        <dd>Capital:</dd>
-                                        <dt>{country.capital[0]}</dt>
-                                    </div>
-                                    <div className='topLevel'>
-                                        <dd>Top Level Domain:</dd>
-                                        <dt>{country.tld[0]}</dt>
-                                    </div>
-                                    <div>
-                                        <dd>Currencies:</dd>
-                                        <dt>{Object.keys(country.currencies).map((val, index, arr) => {
-                                            if (index !== arr.length - 1) {
-                                                return <span key={index}>{`${country.currencies[val].name}, `}</span>
-                                            } else {
-                                                return <span key={index}>{`${country.currencies[val].name}`}</span>
-                                            }
-                                        })}</dt>
-                                    </div>
-                                    <div>
-                                        <dd>Languages:</dd>
-                                        <dt>{Object.keys(country.languages).map((val, index, arr) => {
-                                            if (index !== arr.length - 1) {
-                                                return <span key={index}>{`${country.languages[val]}, `}</span>
-                                            } else {
-                                                return <span key={index}>{`${country.languages[val]}`}</span>
-                                            }
-                                        })}</dt>
+                                    <div className='groupTwo'>
+                                        <div className='topLevel'>
+                                            <dd>Top Level Domain:</dd>
+                                            <dt>{country.tld[0]}</dt>
+                                        </div>
+                                        <div>
+                                            <dd>Currencies:</dd>
+                                            <dt>{Object.keys(country.currencies).map((val, index, arr) => {
+                                                if (index < 2) {
+                                                    if (index !== arr.length - 1) {
+                                                        return <span key={index}>{`${country.currencies[val].name}, `}</span>
+                                                    } else {
+                                                        return <span key={index}>{`${country.currencies[val].name}`}</span>
+                                                    }
+                                                }
+                                            })}</dt>
+                                        </div>
+                                        <div>
+                                            <dd>Languages:</dd>
+                                            <dt>{Object.keys(country.languages).map((val, index, arr) => {
+                                                if (index < 3) {
+                                                    if (index !== arr.length - 1 && index < 2) {
+                                                        return <span key={index}>{`${country.languages[val]}, `}</span>
+                                                    } else {
+                                                        return <span key={index}>{`${country.languages[val]}`}</span>
+                                                    }
+                                                }
+                                            })}</dt>
+                                        </div>
                                     </div>
                                     <div className='bordering'>
-                                        <dd>Border Countries</dd>
+                                        <dd>Border Countries:</dd>
                                         <dt>
-                                            {
+                                            {borderCountries.length > 0 ?
                                                 borderCountries.map((country, index) => {
                                                     return <span key={index}><Link
                                                         className='spanLink'
                                                         to={`/detailView/${country.cca3}/${country.borders}`}
                                                     >{country.name.common}</Link></span>
                                                 })
+                                                : <span>N/A</span>
                                             }
                                         </dt>
                                     </div>
