@@ -10,8 +10,10 @@
     @include dt {
         flex-direction: row;
         flex-wrap: wrap;
-        gap: 1rem;
+        column-gap: 4.65rem;
         justify-content: center;
+        padding-block: 3rem;
+        margin-inline: 1.5rem;
     }
 
     .searchContainer {
@@ -19,30 +21,35 @@
 
         @include dt {
             display: flex;
-            justify-content: space-between;
             width: 100%;
+            margin-bottom: 1.05rem;
         }
 
         &_country {
             border: none;
-            border-radius: .4rem;
+            border-radius: .5rem;
 
+            @include dt {
+                height: 100%;
+                min-width: 75%;
+            }
 
             input {
                 width: 100%;
                 min-height: 3rem;
                 border: none;
                 box-shadow: 5px 5px 10px -8px hsl(0, 0%, 52%);
-                padding-inline-start: calc(6% + 3.5rem);
-                background: 12.5% center url('/search.svg') no-repeat;
-                background-size: 6%;
+                background: 1.5rem center url('/search.svg') no-repeat;
+                padding-inline-start: 3.5rem;
+                background-size: 1rem;
 
+                @include dt {
+                    min-height: 3.5rem;
+                }
 
                 &::placeholder {
                     font-weight: 400;
                 }
-
-
 
                 @include dt {
                     width: 50%;
@@ -51,22 +58,33 @@
         }
 
         &_region {
+            position: relative;
             width: 50%;
             margin-top: 2rem;
             border: none;
-            border-radius: .4rem;
+            border-radius: .5rem;
+            margin-left: auto;
 
             @include dt {
                 margin-top: 0;
-
+                width: 12.75rem;
             }
 
             select {
+                appearance: none;
                 width: 100%;
                 min-height: 3rem;
                 border: none;
                 box-shadow: 5px 5px 10px -8px hsl(0, 0%, 52%);
-                padding-inline: .5rem;
+                padding-inline: 1.5rem;
+
+                @include dt {}
+
+
+            }
+
+            .select-selected {
+                background-color: red;
             }
         }
     }

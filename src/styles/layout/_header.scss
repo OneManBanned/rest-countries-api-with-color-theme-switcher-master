@@ -1,12 +1,22 @@
+@use '../abstracts/breakpoints' as *;
+
 header {
     width: 100%;
     box-shadow: 5px 5px 10px -8px hsl(0, 0%, 52%);
     ;
 
+    @include dt {
+        padding-inline: 1.5rem;
+    }
+
 
     h1 {
         font-size: .925rem;
         font-weight: 800;
+
+        @include dt {
+            font-size: 1.5rem;
+        }
     }
 
     nav {
@@ -22,6 +32,10 @@ header {
             justify-content: end;
             gap: .5rem;
 
+            @include dt {
+                align-items: center;
+            }
+
 
             svg {
                 max-height: 1rem;
@@ -32,7 +46,10 @@ header {
                 font-size: .8rem;
                 font-weight: 800;
 
-
+                @include dt {
+                    font-size: 1rem;
+                    font-weight: 600;
+                }
             }
 
             input {
