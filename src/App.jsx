@@ -4,7 +4,6 @@ import ListView from "./routes/ListView"
 import DetailView from "./routes/DetailView"
 import { Route, Routes } from "react-router-dom"
 
-
 export const ThemeContext = createContext(null);
 
 function App() {
