@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar"
 import ListView from "./routes/ListView"
 import DetailView from "./routes/DetailView"
 import { Route, Routes } from "react-router-dom"
+import '../dist/css/index.css'
 
 export const ThemeContext = createContext(null);
 
