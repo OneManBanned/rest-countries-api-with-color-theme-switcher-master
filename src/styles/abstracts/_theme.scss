@@ -3,7 +3,8 @@
 @mixin dark-mode {
 
     header,
-    .countryContainer {
+    .countryContainer,
+    .loading {
         background: $dark-elements;
         color: $white;
     }
@@ -62,11 +63,14 @@
     }
 
     .mainContainer,
-    main {
+    main,
+    .loading {
         background: $light-bg;
     }
 
     .searchContainer {
+
+        .select,
         input {
             background-color: $white;
 
@@ -83,6 +87,10 @@
     .backBtn {
         background: 1.25rem url('/back_icon_black.svg') no-repeat $white;
         color: $dark-bg;
+        box-shadow: 0px 0px 6px -1px hsl(0, 0%, 52%);
+    }
+
+    .select {
         box-shadow: 0px 0px 6px -1px hsl(0, 0%, 52%);
     }
 

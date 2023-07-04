@@ -1,6 +1,6 @@
 import { useState, createContext } from "react"
 import Navbar from "./components/Navbar"
-import ListView from "./routes/listView"
+import ListView from "./routes/ListView"
 import DetailView from "./routes/DetailView"
 import { Route, Routes } from "react-router-dom"
 

@@ -2,7 +2,6 @@ import { Link, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react';
 import { callAPI } from '../js/caller';
 
-
 export default function DetailView() {
 
     const params = useParams()
@@ -17,15 +16,14 @@ export default function DetailView() {
         if (borderApiCall !== '' && params.borders) {
             callAPI(`https://restcountries.com/v3.1/alpha?codes=${borderApiCall}&fields=name,borders,cca3`, setBorderCountries)
         }
+
         setIsLoading(false)
     }, [isLoading, params])
-
-    console.log(countryData[0])
 
     return (
         <>
             {isLoading
-                ? <div>loading...</div>
+                ? <div className='detail-loading'></div>
                 : countryData.map((country, index) => {
                     return <div key={index}
                         className='detailView'>
@@ -45,7 +43,7 @@ export default function DetailView() {
                                             <dd>Native Name:</dd>
                                             {Object.keys(country.name.nativeName).map((val, index) => {
                                                 if (index === 0) {
-                                                    return <dt>{country.name.nativeName[val].common}</dt>
+                                                    return <dt key={index}>{country.name.nativeName[val].common}</dt>
                                                 }
                                             })}
                                         </div>
